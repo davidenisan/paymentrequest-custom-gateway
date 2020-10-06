@@ -1,30 +1,27 @@
-import axios from 'axios'
+exports.handler = async function(event, context, callback) {   
+    // Get request's body
+    const request = JSON.parse(event.body)
 
-export default async (req, res) => {
-  console.log(JSON.stringify(req.body))
-  if (req.body && req.body.publicToken) {
-    try {
-      // Validate the request was made by Snipcart
-      await axios.get(`${process.env.PAYMENT_URL}/api/public/custom-payment-gateway/validate?publicToken=${req.body.publicToken}`)
+    // Validate that the request is coming from Snipcart
+    const response = await fetch(`https://payment.snipcart.com/api/public/custom-payment-gateway/validate?publicToken=${request.PublicToken}`)
 
-      // Return the payment methods
-      return res.json([{
-        id: 'sleeky_pay',
-        name: 'SleekyPay',
-        checkoutUrl: `https://sleeky-pay.netlify.app/index.html`,
-      },{
-        id: 'paymentrequest-custom-gateway',
-        name: 'Google pay',
-        checkoutUrl: process.env.CHECKOUT_URL,
-        iconUrl: `${process.env.CHECKOUT_URL}/google_pay.png`
-      }])
-    }catch(e){
-      // Couldn't validate the request
-      console.error(e)
-      return res.status(401).send()
+    // Return a 404 if the request is not from Snipcart
+    if (!response.ok) return {
+        statusCode: 404,
+        body: ""
     }
-  }
 
-  // No publicToken provided. This means the request was NOT made by Snipcart
-  return res.status(401).send()
+    // Create a payment method list
+    let paymentMethodList = [{
+        id: '<js-pay>',
+        name: '<JS Pay>',
+        iconUrl: '<https://todaynewsspot.com/wp-content/uploads/2020/04/node-js.jpg>',
+        checkoutUrl: '<https://todaynewsspot.com/>',
+    }]
+
+    // Return successful status code and available payment methods
+    return {
+        statusCode: 200,
+        body: JSON.stringify(paymentMethodList)
+    };
 }
