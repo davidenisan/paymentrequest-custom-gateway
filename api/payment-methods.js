@@ -26,5 +26,6 @@ export default async (req, res) => {
   }
 
   // No publicToken provided. This means the request was NOT made by Snipcart
-  return res.status(401).send()
+  //return res.status(401).send()
+  console.log('Error not from SNipcart')
 }
