@@ -21,12 +21,10 @@ export default async (req, res) => {
     }catch(e){
       // Couldn't validate the request
       console.error(e)
-      //return res.status(401).send()
-      console.log('Error not from SNipcart')
+      return res.status(401).send()
     }
   }
 
   // No publicToken provided. This means the request was NOT made by Snipcart
-  //return res.status(401).send()
-  console.log('Error not from SNipcart')
+  return res.status(401).send()
 }
