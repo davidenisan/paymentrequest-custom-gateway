@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/snipcart/paymentrequest-custom-gateway.git"
+    "url": "git+https://github.com/davidenisan/paymentrequest-custom-gateway.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/snipcart/paymentrequest-custom-gateway/issues"
+    "url": "https://github.com/davidenisan/paymentrequest-custom-gateway/issues"
   },
-  "homepage": "https://github.com/snipcart/paymentrequest-custom-gateway#readme",
+  "homepage": "https://github.com/davidenisan/paymentrequest-custom-gateway#readme",
   "dependencies": {
     "axios": "^0.19.2"
   },
