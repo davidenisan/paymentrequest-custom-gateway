@@ -5,7 +5,7 @@ export default async (req, res) => {
   if (req.body && req.body.publicToken) {
     try {
       // Validate the request was made by Snipcart
-      await axios.get(`${process.env.PAYMENT_URL}/api/public/custom-payment-gateway/validate?publicToken=${req.body.publicToken}`)
+      await axios.get(`https://payment.snipcart.com/api/public/custom-payment-gateway/validate?publicToken=${request.PublicToken}`)
 
       // Return the payment methods
       return res.json([{
