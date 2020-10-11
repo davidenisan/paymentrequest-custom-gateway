@@ -16,7 +16,7 @@ export default async (req, res) => {
     }catch(e){
       // Couldn't validate the request
       console.error(e)
-      return res.status(401).send()
+      return res.status(404).send()
     }
   }
 
